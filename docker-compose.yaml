@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  editor:
+    container_name: openapi-documents.editor
+    image: swaggerapi/swagger-editor
+    ports:
+      - "9875:8080"
+    volumes:
+      - ./openapi.yaml:/openapi.yaml
+    environment:
+      SWAGGER_FILE: /openapi.yaml
+  viewer:
+    container_name: openapi-documents.viewer
+    image: swaggerapi/swagger-ui
+    ports:
+      - "9876:8080"
+    volumes:
+      - ./openapi.yaml:/openapi.yaml
+    environment:
+      SWAGGER_JSON: /openapi.yaml
